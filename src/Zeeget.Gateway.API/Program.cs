@@ -1,4 +1,6 @@
+using Microsoft.Extensions.Options;
 using Zeeget.Gateway.API.Configurations.DependencyInjections.Base;
+using Zeeget.Shared.Commons.Configurations.Settings.HttpClient;
 
 var builder = WebApplication.CreateBuilder(args);
 

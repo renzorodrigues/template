@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
 using Zeeget.Gateway.API.Modules.Authentication.Dtos;
+using Zeeget.Shared.Commons.Configurations.Settings.HttpClient;
 
 namespace Zeeget.Gateway.API.Modules.Authentication.Services.Keycloak
 {
@@ -8,11 +9,13 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Services.Keycloak
     {
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _configuration;
+        private readonly HttpClientSettings _httpClientSettings;
 
-        public KeycloakService(HttpClient httpClient, IConfiguration configuration)
+        public KeycloakService(HttpClient httpClient, IConfiguration configuration, HttpClientSettings httpClientSettings)
         {
             _httpClient = httpClient;
             _configuration = configuration;
+            _httpClientSettings = httpClientSettings;
         }
 
         public async Task<bool> RegisterUserAsync(UserRegistrationDto user)
@@ -49,8 +52,7 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Services.Keycloak
 
         public async Task<string> LoginUserAsync(UserLoginDto user)
         {
-            var tokenUrl =
-                $"{_configuration["Keycloak:BaseUrl"]}/auth/realms/{_configuration["Keycloak:Realm"]}/protocol/openid-connect/token";
+            var tokenUrl = $"{_httpClientSettings.KeycloakToken?.BaseAddress}{_httpClientSettings.KeycloakToken?.RequestUri}";
 
             var content = new FormUrlEncodedContent(
                 new[]
@@ -69,7 +71,7 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Services.Keycloak
                 }
             );
 
-            var response = await _httpClient.PostAsync("http://localhost:8080/realms/myrealm/protocol/openid-connect/token", content);
+            var response = await _httpClient.PostAsync(tokenUrl, content);
             response.EnsureSuccessStatusCode();
 
             var result = await response.Content.ReadAsStringAsync();

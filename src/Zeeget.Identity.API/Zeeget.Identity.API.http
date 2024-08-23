@@ -1,0 +1,6 @@
+@Zeeget.Identity.API_HostAddress = http://localhost:5216
+
+GET {{Zeeget.Identity.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

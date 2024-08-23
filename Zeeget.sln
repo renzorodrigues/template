@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4BDA1895-5D9A-4D0A-8729-B6C0C9E9B4FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{31B90D26-C174-4A00-8DBD-7B3B2D1EB20C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{A611D0F1-2471-47A0-BF3D-A7AB87540281}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{A2B07684-8B09-4241-B0D1-18ED93A6A116}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{3099301E-F03A-4A4B-8F07-5C07F79531A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{832B508C-EB4E-4EBB-9E0F-21882F9C7993}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{E6F93894-2D6D-4FF7-A9D7-0D56AEA60010}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zeeget.Identity.API", "src\Zeeget.Identity.API\Zeeget.Identity.API.csproj", "{20B84223-79F8-482F-8CDA-FA9B745DA761}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zeeget.Identity.Application", "src\Zeeget.Identity.Application\Zeeget.Identity.Application.csproj", "{0C1771F2-54BD-450D-A4D4-DEA7BBE6E6D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zeeget.Identity.Domain", "src\Zeeget.Identity.Domain\Zeeget.Identity.Domain.csproj", "{C7867217-DC54-49C1-8420-00A699631AF8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zeeget.Identity.Infrastructure", "src\Zeeget.Identity.Infrastructure\Zeeget.Identity.Infrastructure.csproj", "{AC8E6879-B46D-4871-AF0C-0AC39BE58E92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{21B78B84-98FD-4EBE-8DBE-7419EDE77EF5}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zeeget.Gateway.API", "src\Zeeget.Gateway.API\Zeeget.Gateway.API.csproj", "{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeeget.Shared.Commons", "Zeeget.Shared.Commons\Zeeget.Shared.Commons.csproj", "{AE07214B-181E-4505-AEB1-B6015855D930}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20B84223-79F8-482F-8CDA-FA9B745DA761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20B84223-79F8-482F-8CDA-FA9B745DA761}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20B84223-79F8-482F-8CDA-FA9B745DA761}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20B84223-79F8-482F-8CDA-FA9B745DA761}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C1771F2-54BD-450D-A4D4-DEA7BBE6E6D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C1771F2-54BD-450D-A4D4-DEA7BBE6E6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C1771F2-54BD-450D-A4D4-DEA7BBE6E6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C1771F2-54BD-450D-A4D4-DEA7BBE6E6D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7867217-DC54-49C1-8420-00A699631AF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7867217-DC54-49C1-8420-00A699631AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7867217-DC54-49C1-8420-00A699631AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7867217-DC54-49C1-8420-00A699631AF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC8E6879-B46D-4871-AF0C-0AC39BE58E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC8E6879-B46D-4871-AF0C-0AC39BE58E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC8E6879-B46D-4871-AF0C-0AC39BE58E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC8E6879-B46D-4871-AF0C-0AC39BE58E92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE07214B-181E-4505-AEB1-B6015855D930}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE07214B-181E-4505-AEB1-B6015855D930}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE07214B-181E-4505-AEB1-B6015855D930}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE07214B-181E-4505-AEB1-B6015855D930}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A611D0F1-2471-47A0-BF3D-A7AB87540281} = {4BDA1895-5D9A-4D0A-8729-B6C0C9E9B4FF}
+		{A2B07684-8B09-4241-B0D1-18ED93A6A116} = {4BDA1895-5D9A-4D0A-8729-B6C0C9E9B4FF}
+		{3099301E-F03A-4A4B-8F07-5C07F79531A7} = {4BDA1895-5D9A-4D0A-8729-B6C0C9E9B4FF}
+		{832B508C-EB4E-4EBB-9E0F-21882F9C7993} = {3099301E-F03A-4A4B-8F07-5C07F79531A7}
+		{E6F93894-2D6D-4FF7-A9D7-0D56AEA60010} = {832B508C-EB4E-4EBB-9E0F-21882F9C7993}
+		{20B84223-79F8-482F-8CDA-FA9B745DA761} = {E6F93894-2D6D-4FF7-A9D7-0D56AEA60010}
+		{0C1771F2-54BD-450D-A4D4-DEA7BBE6E6D6} = {E6F93894-2D6D-4FF7-A9D7-0D56AEA60010}
+		{C7867217-DC54-49C1-8420-00A699631AF8} = {E6F93894-2D6D-4FF7-A9D7-0D56AEA60010}
+		{AC8E6879-B46D-4871-AF0C-0AC39BE58E92} = {E6F93894-2D6D-4FF7-A9D7-0D56AEA60010}
+		{21B78B84-98FD-4EBE-8DBE-7419EDE77EF5} = {3099301E-F03A-4A4B-8F07-5C07F79531A7}
+		{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30} = {A611D0F1-2471-47A0-BF3D-A7AB87540281}
+		{AE07214B-181E-4505-AEB1-B6015855D930} = {3099301E-F03A-4A4B-8F07-5C07F79531A7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6CA49540-A194-4458-859E-1DEF0B3978A4}
+	EndGlobalSection
+EndGlobal

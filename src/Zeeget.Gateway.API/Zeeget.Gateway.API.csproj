@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>3e755e44-e9bd-413b-92d7-4a1be1a508ea</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="MediatR" />
+	<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+	<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
+	<PackageReference Include="Swashbuckle.AspNetCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Zeeget.Shared.Commons\Zeeget.Shared.Commons.csproj" />
+  </ItemGroup>
+
+</Project>

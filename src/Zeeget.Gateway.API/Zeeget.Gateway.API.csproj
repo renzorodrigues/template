@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Zeeget.Shared.Commons\Zeeget.Shared.Commons.csproj" />
+    <ProjectReference Include="..\..\..\zeeget-products\template\Zeeget\Zeeget.Shared.Commons\Zeeget.Shared.Commons.csproj" />
   </ItemGroup>
 
 </Project>

@@ -32,7 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{21B78B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zeeget.Gateway.API", "src\Zeeget.Gateway.API\Zeeget.Gateway.API.csproj", "{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeeget.Shared.Commons", "Zeeget.Shared.Commons\Zeeget.Shared.Commons.csproj", "{AE07214B-181E-4505-AEB1-B6015855D930}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zeeget.Shared.Commons", "..\zeeget-products\template\Zeeget\Zeeget.Shared.Commons\Zeeget.Shared.Commons.csproj", "{A5F00F00-24C6-4431-B6DC-B60BB7397175}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,10 +60,10 @@ Global
 		{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE07214B-181E-4505-AEB1-B6015855D930}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE07214B-181E-4505-AEB1-B6015855D930}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE07214B-181E-4505-AEB1-B6015855D930}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE07214B-181E-4505-AEB1-B6015855D930}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5F00F00-24C6-4431-B6DC-B60BB7397175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5F00F00-24C6-4431-B6DC-B60BB7397175}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5F00F00-24C6-4431-B6DC-B60BB7397175}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5F00F00-24C6-4431-B6DC-B60BB7397175}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,7 +80,7 @@ Global
 		{AC8E6879-B46D-4871-AF0C-0AC39BE58E92} = {E6F93894-2D6D-4FF7-A9D7-0D56AEA60010}
 		{21B78B84-98FD-4EBE-8DBE-7419EDE77EF5} = {3099301E-F03A-4A4B-8F07-5C07F79531A7}
 		{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30} = {A611D0F1-2471-47A0-BF3D-A7AB87540281}
-		{AE07214B-181E-4505-AEB1-B6015855D930} = {3099301E-F03A-4A4B-8F07-5C07F79531A7}
+		{A5F00F00-24C6-4431-B6DC-B60BB7397175} = {3099301E-F03A-4A4B-8F07-5C07F79531A7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6CA49540-A194-4458-859E-1DEF0B3978A4}

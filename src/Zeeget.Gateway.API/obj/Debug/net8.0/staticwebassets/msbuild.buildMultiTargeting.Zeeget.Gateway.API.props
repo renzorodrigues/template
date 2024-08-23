@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Zeeget.Gateway.API.props" />
+</Project>

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "sN4mI9AkNRCXHS91JQcSvCy78NTO8wU2n5gxfJp1VYY=",
+  "Source": "Zeeget.Identity.API",
+  "BasePath": "_content/Zeeget.Identity.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

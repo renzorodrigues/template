@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Zeeget.Identity.API.props" />
+</Project>

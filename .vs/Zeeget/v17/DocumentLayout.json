@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\renzo\\Documents\\dev\\template\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}|src\\Zeeget.Gateway.API\\Zeeget.Gateway.API.csproj|c:\\users\\renzo\\documents\\dev\\template\\src\\zeeget.gateway.api\\modules\\authentication\\handlers\\registeruserhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}|src\\Zeeget.Gateway.API\\Zeeget.Gateway.API.csproj|solutionrelative:src\\zeeget.gateway.api\\modules\\authentication\\handlers\\registeruserhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}|src\\Zeeget.Gateway.API\\Zeeget.Gateway.API.csproj|c:\\users\\renzo\\documents\\dev\\template\\src\\zeeget.gateway.api\\modules\\authentication\\handlers\\loginuserhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}|src\\Zeeget.Gateway.API\\Zeeget.Gateway.API.csproj|solutionrelative:src\\zeeget.gateway.api\\modules\\authentication\\handlers\\loginuserhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}|src\\Zeeget.Gateway.API\\Zeeget.Gateway.API.csproj|c:\\users\\renzo\\documents\\dev\\template\\src\\zeeget.gateway.api\\modules\\authentication\\controllers\\v1\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}|src\\Zeeget.Gateway.API\\Zeeget.Gateway.API.csproj|solutionrelative:src\\zeeget.gateway.api\\modules\\authentication\\controllers\\v1\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}|src\\Zeeget.Gateway.API\\Zeeget.Gateway.API.csproj|c:\\users\\renzo\\documents\\dev\\template\\src\\zeeget.gateway.api\\configurations\\dependencyinjections\\authenticationserviceinstaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}|src\\Zeeget.Gateway.API\\Zeeget.Gateway.API.csproj|solutionrelative:src\\zeeget.gateway.api\\configurations\\dependencyinjections\\authenticationserviceinstaller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}|src\\Zeeget.Gateway.API\\Zeeget.Gateway.API.csproj|c:\\users\\renzo\\documents\\dev\\template\\src\\zeeget.gateway.api\\zeeget.gateway.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{7C7D6F2B-2D3F-4DF7-B8E5-398E04183F30}|src\\Zeeget.Gateway.API\\Zeeget.Gateway.API.csproj|solutionrelative:src\\zeeget.gateway.api\\zeeget.gateway.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RegisterUserHandler.cs",
+              "DocumentMoniker": "C:\\Users\\renzo\\Documents\\dev\\template\\src\\Zeeget.Gateway.API\\Modules\\Authentication\\Handlers\\RegisterUserHandler.cs",
+              "RelativeDocumentMoniker": "src\\Zeeget.Gateway.API\\Modules\\Authentication\\Handlers\\RegisterUserHandler.cs",
+              "ToolTip": "C:\\Users\\renzo\\Documents\\dev\\template\\src\\Zeeget.Gateway.API\\Modules\\Authentication\\Handlers\\RegisterUserHandler.cs",
+              "RelativeToolTip": "src\\Zeeget.Gateway.API\\Modules\\Authentication\\Handlers\\RegisterUserHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAABbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-23T14:20:16.164Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginUserHandler.cs",
+              "DocumentMoniker": "C:\\Users\\renzo\\Documents\\dev\\template\\src\\Zeeget.Gateway.API\\Modules\\Authentication\\Handlers\\LoginUserHandler.cs",
+              "RelativeDocumentMoniker": "src\\Zeeget.Gateway.API\\Modules\\Authentication\\Handlers\\LoginUserHandler.cs",
+              "ToolTip": "C:\\Users\\renzo\\Documents\\dev\\template\\src\\Zeeget.Gateway.API\\Modules\\Authentication\\Handlers\\LoginUserHandler.cs",
+              "RelativeToolTip": "src\\Zeeget.Gateway.API\\Modules\\Authentication\\Handlers\\LoginUserHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-23T14:20:10.46Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\renzo\\Documents\\dev\\template\\src\\Zeeget.Gateway.API\\Modules\\Authentication\\Controllers\\v1\\AuthController.cs",
+              "RelativeDocumentMoniker": "src\\Zeeget.Gateway.API\\Modules\\Authentication\\Controllers\\v1\\AuthController.cs",
+              "ToolTip": "C:\\Users\\renzo\\Documents\\dev\\template\\src\\Zeeget.Gateway.API\\Modules\\Authentication\\Controllers\\v1\\AuthController.cs",
+              "RelativeToolTip": "src\\Zeeget.Gateway.API\\Modules\\Authentication\\Controllers\\v1\\AuthController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-23T14:20:00.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthenticationServiceInstaller.cs",
+              "DocumentMoniker": "C:\\Users\\renzo\\Documents\\dev\\template\\src\\Zeeget.Gateway.API\\Configurations\\DependencyInjections\\AuthenticationServiceInstaller.cs",
+              "RelativeDocumentMoniker": "src\\Zeeget.Gateway.API\\Configurations\\DependencyInjections\\AuthenticationServiceInstaller.cs",
+              "ToolTip": "C:\\Users\\renzo\\Documents\\dev\\template\\src\\Zeeget.Gateway.API\\Configurations\\DependencyInjections\\AuthenticationServiceInstaller.cs",
+              "RelativeToolTip": "src\\Zeeget.Gateway.API\\Configurations\\DependencyInjections\\AuthenticationServiceInstaller.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-23T14:18:42.106Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Zeeget.Gateway.API",
+              "DocumentMoniker": "C:\\Users\\renzo\\Documents\\dev\\template\\src\\Zeeget.Gateway.API\\Zeeget.Gateway.API.csproj",
+              "RelativeDocumentMoniker": "src\\Zeeget.Gateway.API\\Zeeget.Gateway.API.csproj",
+              "ToolTip": "C:\\Users\\renzo\\Documents\\dev\\template\\src\\Zeeget.Gateway.API\\Zeeget.Gateway.API.csproj",
+              "RelativeToolTip": "src\\Zeeget.Gateway.API\\Zeeget.Gateway.API.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-08-23T14:18:13.855Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

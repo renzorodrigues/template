@@ -1,0 +1,16 @@
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\bin\Debug\net8.0\Zeeget.Identity.Infrastructure.deps.json
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\bin\Debug\net8.0\Zeeget.Identity.Infrastructure.dll
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\bin\Debug\net8.0\Zeeget.Identity.Infrastructure.pdb
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\bin\Debug\net8.0\Zeeget.Identity.Domain.dll
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\bin\Debug\net8.0\Zeeget.Identity.Domain.pdb
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\obj\Debug\net8.0\Zeeget.Identity.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\obj\Debug\net8.0\Zeeget.Identity.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\obj\Debug\net8.0\Zeeget.Identity.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\obj\Debug\net8.0\Zeeget.Identity.Infrastructure.AssemblyInfo.cs
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\obj\Debug\net8.0\Zeeget.Identity.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\obj\Debug\net8.0\Zeeget.Identity.Infrastructure.sourcelink.json
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\obj\Debug\net8.0\Zeeget.I.69A24E41.Up2Date
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\obj\Debug\net8.0\Zeeget.Identity.Infrastructure.dll
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\obj\Debug\net8.0\refint\Zeeget.Identity.Infrastructure.dll
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\obj\Debug\net8.0\Zeeget.Identity.Infrastructure.pdb
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Infrastructure\obj\Debug\net8.0\ref\Zeeget.Identity.Infrastructure.dll

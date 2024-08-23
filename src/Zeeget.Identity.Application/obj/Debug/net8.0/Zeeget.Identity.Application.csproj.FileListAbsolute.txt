@@ -1,0 +1,12 @@
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Application\bin\Debug\net8.0\Zeeget.Identity.Application.deps.json
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Application\bin\Debug\net8.0\Zeeget.Identity.Application.dll
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Application\bin\Debug\net8.0\Zeeget.Identity.Application.pdb
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Application\obj\Debug\net8.0\Zeeget.Identity.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Application\obj\Debug\net8.0\Zeeget.Identity.Application.AssemblyInfoInputs.cache
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Application\obj\Debug\net8.0\Zeeget.Identity.Application.AssemblyInfo.cs
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Application\obj\Debug\net8.0\Zeeget.Identity.Application.csproj.CoreCompileInputs.cache
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Application\obj\Debug\net8.0\Zeeget.Identity.Application.sourcelink.json
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Application\obj\Debug\net8.0\Zeeget.Identity.Application.dll
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Application\obj\Debug\net8.0\refint\Zeeget.Identity.Application.dll
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Application\obj\Debug\net8.0\Zeeget.Identity.Application.pdb
+C:\Users\renzo\Documents\dev\template\src\Zeeget.Identity.Application\obj\Debug\net8.0\ref\Zeeget.Identity.Application.dll

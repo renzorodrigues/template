@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Zeeget.Gateway.API.props" />
+</Project>

@@ -24,8 +24,8 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Controllers.v1
             [FromBody] UserLoginDto userLoginDto,
             CancellationToken cancellationToken
         ) =>
-            await ExecuteCommandAsync<LoginUserCommand, Guid>(
-                new LoginUserCommand(userLoginDto),
+            await ExecuteQueryAsync<LoginUserQuery, string>(
+                new LoginUserQuery(userLoginDto),
                 cancellationToken
             );
     }

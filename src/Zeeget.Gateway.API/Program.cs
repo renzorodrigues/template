@@ -1,11 +1,11 @@
-using Microsoft.Extensions.Options;
 using Zeeget.Gateway.API.Configurations.DependencyInjections.Base;
-using Zeeget.Shared.Commons.Configurations.Settings.HttpClient;
+using Zeeget.Shared.Commons.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.InstallServicesInAssembly(builder.Configuration);
+builder.Services.AddTransient<ExceptionHandlerMiddleware>();
 
 builder.Services.AddHttpClient();
 builder.Services.AddAuthorization();
@@ -22,6 +22,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

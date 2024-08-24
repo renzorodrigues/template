@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Zeeget.Gateway.API.Configurations.DependencyInjections.Base;
-using Zeeget.Gateway.API.Configurations.Settings;
+using Zeeget.Gateway.API.Configurations.Settings.Modules.Authentication;
 using Zeeget.Shared.Utilities.Guard;
 
 namespace Zeeget.Gateway.API.Configurations.DependencyInjections

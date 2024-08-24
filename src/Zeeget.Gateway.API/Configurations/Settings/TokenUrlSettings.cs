@@ -2,5 +2,5 @@
 
 namespace Zeeget.Gateway.API.Configurations.Settings
 {
-    public class KeycloakToken : HttpClientSettingsBase { }
+    public class TokenUrlSettings : HttpClientSettingsBase { }
 }

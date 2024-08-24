@@ -1,9 +1,9 @@
-using Zeeget.Gateway.API.Configurations.Settings;
+using Zeeget.Gateway.API.Configurations.Settings.Modules.Authentication;
 
 namespace Zeeget.Shared.Commons.Configurations.Settings.HttpClient
 {
     public class HttpClientSettings
     {
-        public KeycloakToken? KeycloakToken { get; set; }
+        public KeycloakSettings? Keycloak { get; set; }
     }
 }

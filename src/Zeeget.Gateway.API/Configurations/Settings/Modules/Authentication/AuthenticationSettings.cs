@@ -1,4 +1,4 @@
-﻿namespace Zeeget.Gateway.API.Configurations.Settings
+﻿namespace Zeeget.Gateway.API.Configurations.Settings.Modules.Authentication
 {
     public class AuthenticationSettings
     {

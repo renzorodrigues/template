@@ -10,14 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="MediatR" />
 	<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
 	<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
 	<PackageReference Include="Swashbuckle.AspNetCore" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\zeeget-products\template\Zeeget\Zeeget.Shared.Commons\Zeeget.Shared.Commons.csproj" />
+    <ProjectReference Include="..\Zeeget.Shared.Commons\Zeeget.Shared.Commons.csproj" />
   </ItemGroup>
 
 </Project>

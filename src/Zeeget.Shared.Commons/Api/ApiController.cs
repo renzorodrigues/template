@@ -1,7 +1,7 @@
-﻿using System.Net;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Net;
 using Zeeget.Shared.Commons.Api.CustomResponse;
 using Zeeget.Shared.Commons.Handlers.Interfaces;
 

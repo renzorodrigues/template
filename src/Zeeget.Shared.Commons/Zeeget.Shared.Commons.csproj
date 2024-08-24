@@ -9,7 +9,14 @@
   <ItemGroup>
     <PackageReference Include="MediatR" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Http" />
   </ItemGroup>
+
+  <!--<ItemGroup>
+	<PackageReference Include="MediatR" />
+	<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
+	<PackageReference Include="Microsoft.Extensions.Http" />
+	<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+  </ItemGroup>-->
 
 </Project>

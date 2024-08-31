@@ -4,22 +4,25 @@ using Zeeget.Gateway.API.Configurations.Settings.Modules.Authentication;
 using Zeeget.Gateway.API.Modules.Authentication.Dtos;
 using Zeeget.Gateway.API.Modules.Authentication.Requests;
 using Zeeget.Gateway.API.Modules.Authentication.Services.Keycloak;
-using Zeeget.Shared.Commons.Api.CustomResponse;
-using Zeeget.Shared.Commons.Configurations.Settings.HttpClient;
-using Zeeget.Shared.Commons.Services.HttpClient.Interfaces;
-using Zeeget.Shared.Utilities.Guard;
+using Zeeget.Shared.Api;
+using Zeeget.Shared.Configurations.Settings.HttpClient;
+using Zeeget.Shared.Guards;
+using Zeeget.Shared.Services.HttpClient.Interfaces;
+using IResult = Zeeget.Shared.Api.IResult;
 
 namespace Zeeget.Gateway.API.Modules.Authentication.Handlers
 {
     public class LoginUserHandler(
         IHttpClient<UserLoginDto, KeycloakResponse> httpClient,
+        IResult result,
         HttpClientSettings httpClientSettings
-    ) : IRequestHandler<LoginUserQuery, Response<string>>
+    ) : IRequestHandler<LoginUserQuery, Result>
     {
         private readonly IHttpClient<UserLoginDto, KeycloakResponse> _httpClient = httpClient;
+        private readonly IResult _result = result;
         private readonly HttpClientSettings _httpClientSettings = httpClientSettings;
 
-        public async Task<Response<string>> Handle(
+        public async Task<Result> Handle(
             LoginUserQuery request,
             CancellationToken cancellationToken
         )
@@ -30,7 +33,7 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Handlers
 
             var response = await _httpClient.SendAsync(request.User, tokenUrl, content);
 
-            return Response<string>.RequestOk(response.AccessToken);
+            return _result.Success(response);
         }
 
         private static FormUrlEncodedContent SetFormContent(string username, string password)
@@ -56,7 +59,10 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Handlers
                 nameof(KeycloakSettings)
             );
 
-            return ConfigurationGuard.EnsureConfiguration(settings.TokenUrl, nameof(TokenUrlSettings));
+            return ConfigurationGuard.EnsureConfiguration(
+                settings.TokenUrl,
+                nameof(TokenUrlSettings)
+            );
         }
     }
 }

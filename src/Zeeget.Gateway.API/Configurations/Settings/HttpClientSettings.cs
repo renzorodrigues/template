@@ -1,6 +1,6 @@
 using Zeeget.Gateway.API.Configurations.Settings.Modules.Authentication;
 
-namespace Zeeget.Shared.Commons.Configurations.Settings.HttpClient
+namespace Zeeget.Gateway.API.Configurations.Settings
 {
     public class HttpClientSettings
     {

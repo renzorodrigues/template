@@ -1,74 +1,59 @@
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Text.Json;
-using Microsoft.AspNetCore.Http;
-using Zeeget.Shared.Commons.Api.CustomResponse;
-using Zeeget.Shared.Commons.Utils.Validations;
+using Zeeget.Shared.Api;
 
-namespace Zeeget.Shared.Commons.Middlewares;
-
-public class ExceptionHandlerMiddleware : IMiddleware
+namespace Zeeget.Shared.Middlewares
 {
-    public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+    public class ExceptionHandlerMiddleware(ILogger<ExceptionHandlerMiddleware> logger, IResult result) : IMiddleware
     {
-        try
-        {
-            ValidationException.Errors.Clear();
+        private readonly ILogger<ExceptionHandlerMiddleware> _logger = logger;
+        private readonly IResult _result = result;
 
-            await next(context);
-        }
-        catch (ValidationException ex)
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            var result = new CustomResponse()
+            try
             {
-                StatusCode = ValidationException.StatusCode,
-                Errors = ValidationException.Errors,
-                Message = ex.Message,
-                IsSuccess = false,
-            };
-
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)result.StatusCode;
-            await context.Response.WriteAsync(JsonSerializer.Serialize(result));
-        }
-        catch (HttpRequestException ex)
-        {
-            HttpStatusCode statusCode = ex.StatusCode is null
-                ? HttpStatusCode.InternalServerError
-                : ex.StatusCode.Value;
-
-            if (ex.StatusCode is null && ex.Message == HttpStatusCode.Unauthorized.ToString())
-            {
-                statusCode = HttpStatusCode.Unauthorized;
+                await next(context);
             }
-
-            var result = new CustomResponse()
+            catch (HttpRequestException ex)
             {
-                StatusCode = statusCode,
-                Message = ex.Message,
-                IsSuccess = false,
-            };
+                Result result;
 
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)result.StatusCode;
-            await context.Response.WriteAsync(JsonSerializer.Serialize(result));
-        }
-        catch (Exception ex)
-        {
-            var exceptionErrorMessage = ex.InnerException is null
-                ? ex.StackTrace ?? "No Strack Trace"
-                : $"{ex.InnerException.Message} - Source: {ex.InnerException.Source}";
+                if (ex.Message == HttpStatusCode.Unauthorized.ToString())
+                {
+                    result = _result.Unauthorized();
+                    _logger.LogWarning($"HttpRequestException: {result.Message} :: {result.StatusCode}");
+                }
+                else
+                {
+                    result = _result.Error(ex.Message);
+                    _logger.LogError($"HttpRequestException: {result.Message} :: {result.StatusCode}");
+                }
 
-            var result = new CustomResponse()
+                _ = Enum.TryParse(result.StatusCode, out HttpStatusCode statusCode);
+
+                context.Response.ContentType = "application/json";
+                context.Response.StatusCode = (int)statusCode;
+                await context.Response.WriteAsync(JsonSerializer.Serialize(result));
+            }
+            catch (Exception ex)
             {
-                StatusCode = HttpStatusCode.InternalServerError,
-                Errors = [new(exceptionErrorMessage)],
-                Message = ex.Message,
-                IsSuccess = false,
-            };
+                var exceptionErrorMessage = ex.InnerException is null
+                    ? ex.StackTrace ?? "No Strack Trace"
+                    : $"{ex.InnerException.Message} - Source: {ex.InnerException.Source}";
 
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            await context.Response.WriteAsync(JsonSerializer.Serialize(result));
+                var result = _result.Error(exceptionErrorMessage);
+
+                _ = Enum.TryParse(result.StatusCode, out HttpStatusCode statusCode);
+
+                _logger.LogError($"HttpRequestException: {result.Message} :: {result.StatusCode}");
+
+                context.Response.ContentType = "application/json";
+                context.Response.StatusCode = (int)statusCode;
+                await context.Response.WriteAsync(JsonSerializer.Serialize(result));
+            }
         }
     }
 }

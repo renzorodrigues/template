@@ -1,5 +1,5 @@
 using Zeeget.Gateway.API.Configurations.DependencyInjections.Base;
-using Zeeget.Shared.Commons.Middlewares;
+using Zeeget.Shared.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 

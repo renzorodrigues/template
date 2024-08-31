@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zeeget.Gateway.Api.Tests", "tests\Zeeget.Gateway.Api.Tests\Zeeget.Gateway.Api.Tests.csproj", "{DC9DA123-0EA1-4D2E-AB8C-0DDCE8A9AAF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeeget.Shared.Commons", "src\Zeeget.Shared.Commons\Zeeget.Shared.Commons.csproj", "{6CD7E810-60DC-4F7D-BF62-585D1217C410}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zeeget.Shared", "src\Zeeget.Shared.Commons\Zeeget.Shared.csproj", "{6CD7E810-60DC-4F7D-BF62-585D1217C410}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

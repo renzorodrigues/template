@@ -1,7 +1,7 @@
 using MediatR;
-using Zeeget.Shared.Commons.Api.CustomResponse;
+using Zeeget.Shared.Api;
 
-namespace Zeeget.Shared.Commons.Handlers.Interfaces
+namespace Zeeget.Shared.Handlers.Interfaces
 {
-    public interface ICommand<TResult> : IRequest<Response<TResult>> { }
+    public interface ICommand<TResult> : IRequest<TResult> { }
 }

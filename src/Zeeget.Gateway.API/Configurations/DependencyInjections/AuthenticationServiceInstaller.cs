@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 using Zeeget.Gateway.API.Configurations.DependencyInjections.Base;
 using Zeeget.Gateway.API.Configurations.Settings.Modules.Authentication;
-using Zeeget.Shared.Utilities.Guard;
+using Zeeget.Shared.Guards;
 
 namespace Zeeget.Gateway.API.Configurations.DependencyInjections
 {

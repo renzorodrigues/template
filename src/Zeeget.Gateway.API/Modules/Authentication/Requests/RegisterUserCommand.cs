@@ -1,9 +1,10 @@
 ﻿using Zeeget.Gateway.API.Modules.Authentication.Dtos;
-using Zeeget.Shared.Commons.Handlers.Interfaces;
+using Zeeget.Shared.Api;
+using Zeeget.Shared.Handlers.Interfaces;
 
 namespace Zeeget.Gateway.API.Modules.Authentication.Requests
 {
-    public record RegisterUserCommand : ICommand<Guid>
+    public record RegisterUserCommand : ICommand<Result>
     {
         public UserRegistrationDto User { get; set; }
 

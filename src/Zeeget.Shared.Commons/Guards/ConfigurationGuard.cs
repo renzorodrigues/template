@@ -1,4 +1,4 @@
-﻿namespace Zeeget.Shared.Utilities.Guard
+﻿namespace Zeeget.Shared.Guards
 {
     public static class ConfigurationGuard
     {

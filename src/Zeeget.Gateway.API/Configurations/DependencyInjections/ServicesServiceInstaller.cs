@@ -1,8 +1,8 @@
 ﻿using Zeeget.Gateway.API.Configurations.DependencyInjections.Base;
-using Zeeget.Shared.Commons.Configurations.Settings.HttpClient;
-using Zeeget.Shared.Commons.Services.HttpClient;
-using Zeeget.Shared.Commons.Services.HttpClient.Interfaces;
-using Zeeget.Shared.Commons.Utils.Validations;
+using Zeeget.Gateway.API.Configurations.Settings;
+using Zeeget.Shared.Services.HttpClient;
+using Zeeget.Shared.Services.HttpClient.Interfaces;
+using Zeeget.Shared.Utils.Validations;
 
 namespace Zeeget.Gateway.API.Configurations.DependencyInjections
 {

@@ -1,4 +1,4 @@
-namespace Zeeget.Shared.Commons.Utils.Validations
+namespace Zeeget.Shared.Utils.Validations
 {
     public class ValidationRequest : IValidator
     {

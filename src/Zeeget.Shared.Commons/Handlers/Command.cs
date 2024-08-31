@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using Zeeget.Shared.Commons.Handlers.Interfaces;
+using Zeeget.Shared.Handlers.Interfaces;
 
-namespace Zeeget.Shared.Commons.Handlers
+namespace Zeeget.Shared.Handlers
 {
     public record Command<TResult> : ICommand<TResult>
     {

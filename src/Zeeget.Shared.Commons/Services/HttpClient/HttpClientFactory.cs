@@ -1,9 +1,8 @@
-using System.Net.Http;
 using System.Text.Json;
-using Zeeget.Shared.Commons.Configurations.Settings.HttpClient;
-using Zeeget.Shared.Commons.Services.HttpClient.Interfaces;
+using Zeeget.Shared.Configurations.Settings.HttpClient;
+using Zeeget.Shared.Services.HttpClient.Interfaces;
 
-namespace Zeeget.Shared.Commons.Services.HttpClient
+namespace Zeeget.Shared.Services.HttpClient
 {
     public class HttpClientFactory<TRequest, TResponse>(IHttpClientFactory httpClientFactory)
         : IHttpClient<TRequest, TResponse>
@@ -26,10 +25,7 @@ namespace Zeeget.Shared.Commons.Services.HttpClient
             return await CreateClient(request, urls);
         }
 
-        private async Task<TResponse> CreateClient(
-            TRequest request,
-            HttpClientSettingsBase urls
-        )
+        private async Task<TResponse> CreateClient(TRequest request, HttpClientSettingsBase urls)
         {
             var client = _httpClientFactory.CreateClient();
 
@@ -63,7 +59,7 @@ namespace Zeeget.Shared.Commons.Services.HttpClient
         {
             Type type = typeof(TRequest);
 
-            if (type == typeof(string[])) // GET
+            if (type == typeof(string[]))
             {
                 var parameters = request as string[];
 
@@ -83,12 +79,9 @@ namespace Zeeget.Shared.Commons.Services.HttpClient
 
                 return await client.SendAsync(httpRequestMessage);
             }
-            else // POST
+            else
             {
-                var httpRequestMessage = new HttpRequestMessage(
-                    HttpMethod.Post,
-                    urls.RequestUri
-                )
+                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, urls.RequestUri)
                 {
                     Content = _formContent
                 };
@@ -96,7 +89,6 @@ namespace Zeeget.Shared.Commons.Services.HttpClient
                 if (httpRequestMessage.Content is null)
                 {
                     var json = JsonSerializer.Serialize(request);
-
                     httpRequestMessage.Content = new StringContent(json, null, "application/json");
                 }
 

@@ -1,4 +1,4 @@
-﻿using Zeeget.Shared.Commons.Configurations.Settings.HttpClient;
+﻿using Zeeget.Shared.Configurations.Settings.HttpClient;
 
 namespace Zeeget.Gateway.API.Configurations.Settings.Modules.Authentication
 {

@@ -1,11 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Net;
-using Zeeget.Shared.Commons.Api.CustomResponse;
 using Zeeget.Shared.Commons.Handlers.Interfaces;
+using Zeeget.Shared.Handlers.Interfaces;
+using CreatedResult = Zeeget.Shared.Api.CustomResponse.CreatedResult;
+using NotFoundResult = Zeeget.Shared.Api.CustomResponse.NotFoundResult;
+using UnauthorizedResult = Zeeget.Shared.Api.CustomResponse.UnauthorizedResult;
 
-namespace Zeeget.Shared.Commons.Api
+namespace Zeeget.Shared.Api
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -15,36 +17,31 @@ namespace Zeeget.Shared.Commons.Api
         private readonly IMediator _mediator = mediator;
 
         // QUERIES
-        protected async Task<IActionResult> ExecuteQueryAsync<TRequest, TResult>(
+        protected async Task<IActionResult> ExecuteQueryAsync<TRequest>(
             TRequest query,
             CancellationToken cancellationToken
         )
-            where TRequest : class, IQuery<TResult>
+            where TRequest : class, IQuery<Result>
         {
-            return await ExecuteAsync<TRequest, TResult>(query, cancellationToken);
-        }
-
-        protected async Task<IActionResult> ExecuteQueryAsync<TRequest>()
-            where TRequest : class, IRequest, new()
-        {
-            return await ExecuteAsync(new TRequest());
+            _logger.LogInformation($"{nameof(ExecuteQueryAsync)}: {typeof(TRequest)}");
+            return await ExecuteAsync(query, cancellationToken);
         }
 
         // COMMANDS
-        protected async Task<IActionResult> ExecuteCommandAsync<TRequest, TResponse>(
+        protected async Task<IActionResult> ExecuteCommandAsync<TRequest>(
             TRequest command,
             CancellationToken cancellationToken
         )
-            where TRequest : class, ICommand<TResponse>
+            where TRequest : class, ICommand<Result>
         {
-            return await ExecuteAsync<TRequest, TResponse>(command, cancellationToken);
+            return await ExecuteAsync(command, cancellationToken);
         }
 
-        private async Task<IActionResult> ExecuteAsync<TRequest, TResponse>(
+        private async Task<IActionResult> ExecuteAsync<TRequest>(
             TRequest request,
             CancellationToken cancellationToken
         )
-            where TRequest : class, IRequest<Response<TResponse>>
+            where TRequest : class, IRequest<Result>
         {
             IActionResult actionResult;
 
@@ -52,32 +49,26 @@ namespace Zeeget.Shared.Commons.Api
 
             if (result.IsSuccess)
             {
-                actionResult = result.StatusCode switch
+                actionResult = result switch
                 {
-                    HttpStatusCode.Created => Created($"{Request.Path.Value}{result.Data}", result),
-                    HttpStatusCode.NoContent => NoContent(),
+                    CreatedResult createdResult
+                        => Created($"{Request.Path.Value}{createdResult.Data}", result),
                     _ => Ok(result)
                 };
             }
             else
             {
-                actionResult = result.StatusCode switch
+                actionResult = result switch
                 {
-                    HttpStatusCode.NotFound => NotFound(result),
-                    HttpStatusCode.Unauthorized => Unauthorized(result),
+                    NotFoundResult notFoundResult => NotFound(notFoundResult.Message),
+                    UnauthorizedResult unauthorizedResult => Unauthorized(unauthorizedResult.Message),
                     _ => BadRequest(result)
                 };
             }
 
+            _logger.LogInformation($"{nameof(ExecuteQueryAsync)}: {typeof(TRequest)} :: {result.StatusCode}");
+
             return actionResult;
-        }
-
-        private async Task<IActionResult> ExecuteAsync<TRequest>(TRequest request)
-            where TRequest : class, IRequest
-        {
-            await _mediator.Send(request);
-
-            return NoContent();
         }
     }
 }

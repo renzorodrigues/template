@@ -1,4 +1,4 @@
-namespace Zeeget.Shared.Commons.Configurations.Settings.HttpClient
+namespace Zeeget.Shared.Configurations.Settings.HttpClient
 {
     public class HttpClientSettingsBase
     {
@@ -6,8 +6,8 @@ namespace Zeeget.Shared.Commons.Configurations.Settings.HttpClient
 
         public HttpClientSettingsBase(string baseAddress, string requestUri)
         {
-            this.BaseAddress = baseAddress;
-            this.RequestUri = requestUri;
+            BaseAddress = baseAddress;
+            RequestUri = requestUri;
         }
 
         public string? BaseAddress { get; set; }

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Zeeget.Gateway.API.Modules.Authentication.Dtos;
 using Zeeget.Gateway.API.Modules.Authentication.Requests;
-using Zeeget.Shared.Commons.Api;
+using Zeeget.Shared.Api;
 
 namespace Zeeget.Gateway.API.Modules.Authentication.Controllers.v1
 {
@@ -14,7 +14,7 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Controllers.v1
             [FromBody] UserRegistrationDto userRegistrationDto,
             CancellationToken cancellationToken
         ) =>
-            await ExecuteCommandAsync<RegisterUserCommand, Guid>(
+            await ExecuteCommandAsync(
                 new RegisterUserCommand(userRegistrationDto),
                 cancellationToken
             );
@@ -23,10 +23,6 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Controllers.v1
         public async Task<IActionResult> Login(
             [FromBody] UserLoginDto userLoginDto,
             CancellationToken cancellationToken
-        ) =>
-            await ExecuteQueryAsync<LoginUserQuery, string>(
-                new LoginUserQuery(userLoginDto),
-                cancellationToken
-            );
+        ) => await ExecuteQueryAsync(new LoginUserQuery(userLoginDto), cancellationToken);
     }
 }

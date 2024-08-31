@@ -1,6 +1,6 @@
-using Zeeget.Shared.Commons.Configurations.Settings.HttpClient;
+using Zeeget.Shared.Configurations.Settings.HttpClient;
 
-namespace Zeeget.Shared.Commons.Services.HttpClient.Interfaces
+namespace Zeeget.Shared.Services.HttpClient.Interfaces
 {
     public interface IHttpClient<TRequest, TResponse>
     {

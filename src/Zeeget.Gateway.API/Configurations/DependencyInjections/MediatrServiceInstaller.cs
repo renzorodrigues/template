@@ -1,5 +1,8 @@
-﻿using Zeeget.Gateway.API.Configurations.DependencyInjections.Base;
+﻿using MediatR;
+using Zeeget.Gateway.API.Configurations.DependencyInjections.Base;
 using Zeeget.Gateway.API.Modules.Authentication.Handlers;
+using Zeeget.Shared.Services.Logging;
+using Zeeget.Shared.Utils.Validations;
 
 namespace Zeeget.Gateway.API.Configurations.DependencyInjections
 {
@@ -14,6 +17,13 @@ namespace Zeeget.Gateway.API.Configurations.DependencyInjections
             services.AddMediatR(m =>
                 m.RegisterServicesFromAssemblyContaining(typeof(LoginUserHandler))
             );
+
+            // Registrar comportamentos do pipeline
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+
+            // Registrar serviços de logging
+            services.AddSingleton<ILoggingService, LoggingService>();
         }
     }
 }

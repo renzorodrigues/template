@@ -11,9 +11,8 @@ namespace Zeeget.Shared.Api
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ApiController(ILogger<ApiController> logger, IMediator mediator) : ControllerBase
+    public class ApiController(IMediator mediator) : ControllerBase
     {
-        private readonly ILogger<ApiController> _logger = logger;
         private readonly IMediator _mediator = mediator;
 
         // QUERIES
@@ -23,7 +22,6 @@ namespace Zeeget.Shared.Api
         )
             where TRequest : class, IQuery<Result>
         {
-            _logger.LogInformation($"{nameof(ExecuteQueryAsync)}: {typeof(TRequest)}");
             return await ExecuteAsync(query, cancellationToken);
         }
 
@@ -65,8 +63,6 @@ namespace Zeeget.Shared.Api
                     _ => BadRequest(result)
                 };
             }
-
-            _logger.LogInformation($"{nameof(ExecuteQueryAsync)}: {typeof(TRequest)} :: {result.StatusCode}");
 
             return actionResult;
         }

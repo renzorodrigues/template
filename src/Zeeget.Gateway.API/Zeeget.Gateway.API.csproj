@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <!--<ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>3e755e44-e9bd-413b-92d7-4a1be1a508ea</UserSecretsId>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!--<UserSecretsId>3e755e44-e9bd-413b-92d7-4a1be1a508ea</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>-->
   </PropertyGroup>

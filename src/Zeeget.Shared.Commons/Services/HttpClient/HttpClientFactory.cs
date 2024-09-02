@@ -1,5 +1,4 @@
 using System.Text.Json;
-using MediatR;
 using Zeeget.Shared.Configurations.Settings.HttpClient;
 using Zeeget.Shared.Services.HttpClient.Interfaces;
 

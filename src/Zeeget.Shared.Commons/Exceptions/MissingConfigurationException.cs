@@ -1,4 +1,4 @@
-﻿namespace Zeeget.Shared.Guards
+﻿namespace Zeeget.Shared.Exceptions
 {
     public class MissingConfigurationException(string configurationName)
         : InvalidOperationException(

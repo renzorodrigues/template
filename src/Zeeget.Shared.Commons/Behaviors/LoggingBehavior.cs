@@ -1,15 +1,10 @@
 ﻿using MediatR;
 using Zeeget.Shared.Services.Logging;
 
-public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+public class LoggingBehavior<TRequest, TResponse>(ILoggingService loggingService) : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
-    private readonly ILoggingService _loggingService;
-
-    public LoggingBehavior(ILoggingService loggingService)
-    {
-        _loggingService = loggingService;
-    }
+    private readonly ILoggingService _loggingService = loggingService;
 
     public async Task<TResponse> Handle(
         TRequest request,

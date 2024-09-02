@@ -6,5 +6,6 @@ namespace Zeeget.Shared.Services.HttpClient.Interfaces
     {
         Task<TResponse> SendAsync(TRequest request, HttpClientSettingsBase settings);
         Task<TResponse> SendAsync(TRequest request, HttpClientSettingsBase settings, FormUrlEncodedContent content);
+        Task<TResponse> SendAsync(HttpClientSettingsBase settings, FormUrlEncodedContent content);
     }
 }

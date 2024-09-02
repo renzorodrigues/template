@@ -9,7 +9,10 @@ namespace Zeeget.Shared.Api
         CreatedResult Created(Guid data, string message = ResultMessages.Created);
         NotFoundResult NotFound(string message = ResultMessages.NotFound);
         UnauthorizedResult Unauthorized(string message = ResultMessages.Unauthorized);
-        BadRequestResult BadRequest(string message = ResultMessages.BadRequest);
+        BadRequestResult BadRequest(
+            IDictionary<string, string[]>? errors = null,
+            string message = ResultMessages.BadRequest
+        );
         ErrorResult Error(string message = ResultMessages.Error);
     }
 }

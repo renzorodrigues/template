@@ -6,8 +6,7 @@ using Zeeget.Shared.Api;
 
 namespace Zeeget.Gateway.API.Modules.Authentication.Controllers.v1
 {
-    public class AuthController(IMediator mediator)
-        : ApiController(mediator)
+    public class AuthController(IMediator mediator) : ApiController(mediator)
     {
         [HttpPost("register")]
         public async Task<IActionResult> Register(

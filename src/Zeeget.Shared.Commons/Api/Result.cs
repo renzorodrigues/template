@@ -33,9 +33,9 @@ namespace Zeeget.Shared.Api
             return new ErrorResult(message);
         }
 
-        public BadRequestResult BadRequest(string message)
+        public BadRequestResult BadRequest(IDictionary<string, string[]>? errors, string message)
         {
-            return new BadRequestResult(message);
+            return new BadRequestResult(errors, message);
         }
     }
 }

@@ -1,9 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Zeeget.Shared.Services.Logging;
+using static Zeeget.Shared.Utils.Constants.ContantStrings;
 
 public class LoggingService : ILoggingService
 {
     private readonly ILogger<LoggingService> _logger;
+    private Type? _request;
 
     public LoggingService(ILogger<LoggingService> logger)
     {
@@ -12,11 +15,12 @@ public class LoggingService : ILoggingService
 
     public void LogRequest<TRequest>(TRequest request)
     {
-        _logger.LogInformation($"Handling {typeof(TRequest).Name}");
+        _request = typeof(TRequest);    
+        _logger.LogInformation(LoggingMessages.Handling, _request);
     }
 
     public void LogResult<TResponse>(TResponse response)
     {
-        _logger.LogInformation($"Handled {typeof(TResponse).Name}");
+        _logger.LogInformation(LoggingMessages.Handled, _request);
     }
 }

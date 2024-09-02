@@ -1,4 +1,6 @@
-﻿namespace Zeeget.Shared.Guards
+﻿using Zeeget.Shared.Exceptions;
+
+namespace Zeeget.Shared.Guards
 {
     public static class ConfigurationGuard
     {

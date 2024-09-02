@@ -1,4 +1,5 @@
 using System.Text.Json;
+using MediatR;
 using Zeeget.Shared.Configurations.Settings.HttpClient;
 using Zeeget.Shared.Services.HttpClient.Interfaces;
 
@@ -8,42 +9,52 @@ namespace Zeeget.Shared.Services.HttpClient
         : IHttpClient<TRequest, TResponse>
     {
         private readonly IHttpClientFactory _httpClientFactory = httpClientFactory;
-        private FormUrlEncodedContent? _formContent;
+        private FormUrlEncodedContent? _content;
+        private TRequest? _request;
 
-        public async Task<TResponse> SendAsync(TRequest request, HttpClientSettingsBase urls)
+        public async Task<TResponse> SendAsync(TRequest request, HttpClientSettingsBase settings)
         {
-            return await CreateClient(request, urls);
+            _request = request;
+            return await CreateClient(settings);
+        }
+
+        public async Task<TResponse> SendAsync(
+            HttpClientSettingsBase settings,
+            FormUrlEncodedContent content
+        )
+        {
+            _content = content;
+            return await CreateClient(settings);
         }
 
         public async Task<TResponse> SendAsync(
             TRequest request,
-            HttpClientSettingsBase urls,
-            FormUrlEncodedContent formContent
+            HttpClientSettingsBase settings,
+            FormUrlEncodedContent content
         )
         {
-            _formContent = formContent;
-            return await CreateClient(request, urls);
+            _content = content;
+            return await CreateClient(settings);
         }
 
-        private async Task<TResponse> CreateClient(TRequest request, HttpClientSettingsBase urls)
+        private async Task<TResponse> CreateClient(HttpClientSettingsBase settings)
         {
             var client = _httpClientFactory.CreateClient();
 
-            client.BaseAddress = new Uri(urls.BaseAddress!);
+            client.BaseAddress = new Uri(settings.BaseAddress!);
 
             try
             {
-                var response = await CreateRequest(request, client, urls);
+                var response = await CreateRequest(client, settings);
 
-                if (response.IsSuccessStatusCode)
+                var content = await response.Content.ReadAsStringAsync();
+
+                if (string.IsNullOrEmpty(content) && response.IsSuccessStatusCode)
                 {
-                    var content = await response.Content.ReadAsStringAsync();
-                    return JsonSerializer.Deserialize<TResponse>(content)!;
+                    return (TResponse)(object)true;
                 }
-                else
-                {
-                    throw new HttpRequestException($"{response.StatusCode}");
-                }
+
+                return JsonDeserializer(content);
             }
             catch (HttpRequestException ex)
             {
@@ -52,27 +63,26 @@ namespace Zeeget.Shared.Services.HttpClient
         }
 
         private async Task<HttpResponseMessage> CreateRequest(
-            TRequest request,
             System.Net.Http.HttpClient client,
-            HttpClientSettingsBase urls
+            HttpClientSettingsBase settings
         )
         {
             Type type = typeof(TRequest);
 
             if (type == typeof(string[]))
             {
-                var parameters = request as string[];
+                var parameters = _request as string[];
 
                 string requestUri;
 
                 if (!(parameters is null || parameters.Length == 0))
                 {
                     requestUri =
-                        $"{client.BaseAddress}{string.Format(urls.RequestUri!, parameters!)}";
+                        $"{client.BaseAddress}{string.Format(settings.RequestUri!, parameters!)}";
                 }
                 else
                 {
-                    requestUri = $"{client.BaseAddress}{urls.RequestUri}";
+                    requestUri = $"{client.BaseAddress}{settings.RequestUri}";
                 }
 
                 var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, requestUri);
@@ -81,19 +91,40 @@ namespace Zeeget.Shared.Services.HttpClient
             }
             else
             {
-                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, urls.RequestUri)
+                HttpRequestMessage httpRequestMessage = new(HttpMethod.Post, settings.RequestUri);
+
+                if (!string.IsNullOrEmpty(settings.Token))
                 {
-                    Content = _formContent
-                };
+                    httpRequestMessage.Headers.Add("Authorization", $"Bearer {settings.Token}");
+                }
+
+                httpRequestMessage.Content = _content;
 
                 if (httpRequestMessage.Content is null)
                 {
-                    var json = JsonSerializer.Serialize(request);
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                        WriteIndented = true
+                    };
+
+                    var json = JsonSerializer.Serialize(_request, options);
                     httpRequestMessage.Content = new StringContent(json, null, "application/json");
                 }
 
+                _content = null;
+
                 return await client.SendAsync(httpRequestMessage);
             }
+        }
+
+        private static TResponse JsonDeserializer(string content)
+        {
+            var deserializedContent = JsonSerializer.Deserialize<TResponse>(content);
+
+            return deserializedContent is null
+                ? throw new HttpRequestException("Content is null")
+                : deserializedContent;
         }
     }
 }

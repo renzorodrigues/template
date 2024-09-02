@@ -27,11 +27,16 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Handlers
             CancellationToken cancellationToken
         )
         {
-            var tokenUrl = ValidateSettings();
+            var settings = GetSettings();
 
             var content = SetFormContent(request.User.Username, request.User.Password);
 
-            var response = await _httpClient.SendAsync(request.User, tokenUrl, content);
+            var response = await _httpClient.SendAsync(request.User, settings, content);
+
+            if (string.IsNullOrEmpty(response.AccessToken))
+            {
+                return _result.Unauthorized();
+            }
 
             return _result.Success(response);
         }
@@ -52,7 +57,7 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Handlers
             );
         }
 
-        private TokenUrlSettings ValidateSettings()
+        private TokenUrlSettings GetSettings()
         {
             var settings = ConfigurationGuard.EnsureConfiguration(
                 _httpClientSettings.Keycloak,

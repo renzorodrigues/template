@@ -1,12 +1,17 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Text.Json;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Zeeget.Shared.Api;
+using Zeeget.Shared.Exceptions;
+using static Zeeget.Shared.Utils.Constants.ContantStrings;
 
 namespace Zeeget.Shared.Middlewares
 {
-    public class ExceptionHandlerMiddleware(ILogger<ExceptionHandlerMiddleware> logger, IResult result) : IMiddleware
+    public class ExceptionHandlerMiddleware(
+        ILogger<ExceptionHandlerMiddleware> logger,
+        IResult result
+    ) : IMiddleware
     {
         private readonly ILogger<ExceptionHandlerMiddleware> _logger = logger;
         private readonly IResult _result = result;
@@ -24,19 +29,40 @@ namespace Zeeget.Shared.Middlewares
                 if (ex.Message == HttpStatusCode.Unauthorized.ToString())
                 {
                     result = _result.Unauthorized();
-                    _logger.LogWarning($"HttpRequestException: {result.Message} :: {result.StatusCode}");
+                    _logger.LogWarning(
+                        LoggingMessages.Exception,
+                        nameof(HttpRequestException),
+                        result.Message,
+                        result.StatusCode
+                    );
                 }
                 else
                 {
                     result = _result.Error(ex.Message);
-                    _logger.LogError($"HttpRequestException: {result.Message} :: {result.StatusCode}");
+                    _logger.LogWarning(
+                        LoggingMessages.Exception,
+                        nameof(HttpRequestException),
+                        result.Message,
+                        result.StatusCode
+                    );
                 }
 
                 _ = Enum.TryParse(result.StatusCode, out HttpStatusCode statusCode);
 
-                context.Response.ContentType = "application/json";
-                context.Response.StatusCode = (int)statusCode;
-                await context.Response.WriteAsync(JsonSerializer.Serialize(result));
+                await WriteAsyn(context, statusCode, result);
+            }
+            catch (CustomValidationException ex)
+            {
+                var result = _result.BadRequest(ex.Errors);
+
+                _logger.LogWarning(
+                    LoggingMessages.Exception,
+                    nameof(CustomValidationException),
+                    result.Message,
+                    result.StatusCode
+                );
+
+                await WriteAsyn(context, HttpStatusCode.BadRequest, result);
             }
             catch (Exception ex)
             {
@@ -48,12 +74,26 @@ namespace Zeeget.Shared.Middlewares
 
                 _ = Enum.TryParse(result.StatusCode, out HttpStatusCode statusCode);
 
-                _logger.LogError($"HttpRequestException: {result.Message} :: {result.StatusCode}");
+                _logger.LogWarning(
+                    LoggingMessages.Exception,
+                    nameof(Exception),
+                    result.Message,
+                    result.StatusCode
+                );
 
-                context.Response.ContentType = "application/json";
-                context.Response.StatusCode = (int)statusCode;
-                await context.Response.WriteAsync(JsonSerializer.Serialize(result));
+                await WriteAsyn(context, statusCode, result);
             }
+        }
+
+        private static async Task WriteAsyn<TResult>(
+            HttpContext context,
+            HttpStatusCode statusCode,
+            TResult result
+        )
+        {
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)statusCode;
+            await context.Response.WriteAsync(JsonSerializer.Serialize(result));
         }
     }
 }

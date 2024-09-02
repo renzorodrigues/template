@@ -10,5 +10,12 @@
             public const string BadRequest = "Request not valid";
             public const string Error = "Something went wrong";
         }
+
+        public static class LoggingMessages
+        {
+            public const string Handling = "Handling >>> {Name}";
+            public const string Handled = "Handled >>> {Name}";
+            public const string Exception = "{ExceptionName} : {Message} :: {StatusCode}";
+        }
     }
 }

@@ -5,7 +5,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.InstallServicesInAssembly(builder.Configuration);
-builder.Services.AddTransient<ExceptionHandlerMiddleware>();
 
 builder.Services.AddHttpClient();
 builder.Services.AddAuthorization();

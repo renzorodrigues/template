@@ -2,8 +2,8 @@
 using Zeeget.Gateway.API.Configurations.DependencyInjections.Base;
 using Zeeget.Gateway.API.Configurations.Settings;
 using Zeeget.Gateway.API.Modules.Authentication.Validators;
-using Zeeget.Shared.Services.HttpClient;
-using Zeeget.Shared.Services.HttpClient.Interfaces;
+using Zeeget.Shared.Services.HttpRequest;
+using Zeeget.Shared.Services.HttpRequest.Interfaces;
 using Zeeget.Shared.Services.Logging;
 
 namespace Zeeget.Gateway.API.Configurations.DependencyInjections
@@ -12,8 +12,9 @@ namespace Zeeget.Gateway.API.Configurations.DependencyInjections
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddTransient(typeof(IHttpClient<,>), typeof(HttpClientFactory<,>));
             services.AddSingleton<ILoggingService, LoggingService>();
+
+            services.AddScoped<IHttpService, HttpService>();
 
             RegisterSettings(services, configuration);
             RegisterValidators(services);

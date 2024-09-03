@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Zeeget.Shared.Commons.Handlers.Interfaces;
 using Zeeget.Shared.Handlers.Interfaces;
 using CreatedResult = Zeeget.Shared.Api.CustomResponse.CreatedResult;
@@ -49,8 +48,7 @@ namespace Zeeget.Shared.Api
             {
                 actionResult = result switch
                 {
-                    CreatedResult createdResult
-                        => Created($"{Request.Path.Value}{createdResult.Data}", result),
+                    CreatedResult createdResult => Created(createdResult.Data, result),
                     _ => Ok(result)
                 };
             }
@@ -59,7 +57,8 @@ namespace Zeeget.Shared.Api
                 actionResult = result switch
                 {
                     NotFoundResult notFoundResult => NotFound(notFoundResult.Message),
-                    UnauthorizedResult unauthorizedResult => Unauthorized(unauthorizedResult.Message),
+                    UnauthorizedResult unauthorizedResult
+                        => Unauthorized(unauthorizedResult.Message),
                     _ => BadRequest(result)
                 };
             }

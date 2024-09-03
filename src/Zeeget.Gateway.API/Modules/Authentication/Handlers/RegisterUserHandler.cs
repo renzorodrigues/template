@@ -5,30 +5,20 @@ using Zeeget.Gateway.API.Modules.Authentication.Requests;
 using Zeeget.Gateway.API.Modules.Authentication.Services.Keycloak;
 using Zeeget.Shared.Api;
 using Zeeget.Shared.Guards;
-using Zeeget.Shared.Services.HttpClient.Interfaces;
+using Zeeget.Shared.Services.HttpRequest.Interfaces;
 using IResult = Zeeget.Shared.Api.IResult;
 
 namespace Zeeget.Gateway.API.Modules.Authentication.Handlers
 {
-    public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Result>
+    public class RegisterUserHandler(
+        IHttpService httpService,
+        IResult result,
+        HttpClientSettings httpClientSettings
+    ) : IRequestHandler<RegisterUserCommand, Result>
     {
-        private readonly IHttpClient<RegisterUserCommand, KeycloakResponse> _httpClientAdminToken;
-        private readonly IHttpClient<RegisterUserCommand, bool> _httpClientPostUser;
-        private readonly IResult _result;
-        private readonly HttpClientSettings _httpClientSettings;
-
-        public RegisterUserHandler(
-            IHttpClient<RegisterUserCommand, KeycloakResponse> httpClientAdminToken,
-            IHttpClient<RegisterUserCommand, bool> httpClientPostUser,
-            IResult result,
-            HttpClientSettings httpClientSettings
-        )
-        {
-            _httpClientAdminToken = httpClientAdminToken;
-            _httpClientPostUser = httpClientPostUser;
-            _result = result;
-            _httpClientSettings = httpClientSettings;
-        }
+        private readonly IHttpService _httpService = httpService;
+        private readonly IResult _result = result;
+        private readonly HttpClientSettings _httpClientSettings = httpClientSettings;
 
         public async Task<Result> Handle(
             RegisterUserCommand request,
@@ -36,35 +26,51 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Handlers
         )
         {
             var adminTokenUrlSettings = GetAdminTokenUrlSettings();
+            var formData = SetFormContent();
 
-            var content = SetFormContent();
-
-            var adminAccessToken = await _httpClientAdminToken.SendAsync(adminTokenUrlSettings, content);
-
-            if (string.IsNullOrEmpty(adminAccessToken.AccessToken))
-            {
-                return _result.Error();
-            }
+            var (Data, Response) = await _httpService
+                .CreateRequest("GetToken")
+                .WithMethod(HttpMethod.Post)
+                .WithRequestUri(
+                    $"{adminTokenUrlSettings.BaseAddress}{adminTokenUrlSettings.RequestUri}"
+                )
+                .WithFormUrlEncodedContent(formData)
+                .SendWithHttpResponseAsync<KeycloakResponse>();
 
             var postUserSettings = GetPostUserSettings();
 
-            postUserSettings.Token = adminAccessToken.AccessToken;
+            if (Response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                _result.Unauthorized();
+            }
 
-            var result = await _httpClientPostUser.SendAsync(request, postUserSettings);
+            postUserSettings.Token = Data?.AccessToken;
 
-            return _result.Success(result);
+            var result = await _httpService
+                .CreateRequest("PostUser")
+                .WithMethod(HttpMethod.Post)
+                .WithHeader("Authorization", $"Bearer {postUserSettings.Token}")
+                .WithStringContent(request)
+                .WithRequestUri($"{postUserSettings.BaseAddress}{postUserSettings.RequestUri}")
+                .SendAsync();
+
+            if (result.IsSuccessStatusCode)
+            {
+                return _result.Created(result.Headers?.Location?.ToString().Split("/").Last());
+            }
+
+            return _result.BadRequest();
         }
 
-        private static FormUrlEncodedContent SetFormContent()
+        private static Dictionary<string, string> SetFormContent()
         {
-            return new FormUrlEncodedContent(
-                [
-                    new KeyValuePair<string, string>("client_id", "admin-cli"),
-                    new KeyValuePair<string, string>("username", "admin"),
-                    new KeyValuePair<string, string>("password", "renzors00"),
-                    new KeyValuePair<string, string>("grant_type", "password"),
-                ]
-            );
+            return new Dictionary<string, string>
+            {
+                { "client_id", "admin-cli" },
+                { "username", "admin" },
+                { "password", "renzors00" },
+                { "grant_type", "password" }
+            };
         }
 
         private AdminTokenUrlSettings GetAdminTokenUrlSettings()

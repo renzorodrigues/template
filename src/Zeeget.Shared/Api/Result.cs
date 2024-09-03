@@ -13,7 +13,7 @@ namespace Zeeget.Shared.Api
             return new SuccessResult<T>(data);
         }
 
-        public CreatedResult Created(Guid data, string message)
+        public CreatedResult Created(string? data, string message)
         {
             return new CreatedResult(data, message);
         }

@@ -6,7 +6,7 @@ namespace Zeeget.Shared.Api
     public interface IResult
     {
         SuccessResult<T> Success<T>(T data);
-        CreatedResult Created(Guid data, string message = ResultMessages.Created);
+        CreatedResult Created(string? data, string message = ResultMessages.Created);
         NotFoundResult NotFound(string message = ResultMessages.NotFound);
         UnauthorizedResult Unauthorized(string message = ResultMessages.Unauthorized);
         BadRequestResult BadRequest(

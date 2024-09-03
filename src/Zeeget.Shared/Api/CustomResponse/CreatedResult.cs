@@ -4,9 +4,9 @@ namespace Zeeget.Shared.Api.CustomResponse
 {
     public class CreatedResult : Result
     {
-        public Guid Data { get; }
+        public string? Data { get; }
 
-        public CreatedResult(Guid data, string message)
+        public CreatedResult(string? data, string message)
         {
             Data = data;
             Message = message;

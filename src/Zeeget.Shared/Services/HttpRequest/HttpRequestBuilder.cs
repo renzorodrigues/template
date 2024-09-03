@@ -1,20 +1,14 @@
 ﻿using System.Text.Json;
+using Polly;
 using Zeeget.Shared.Services.HttpRequest.Interfaces;
 
 namespace Zeeget.Shared.Services.HttpRequest
 {
-    public class HttpRequestBuilder : IHttpRequestBuilder
+    public class HttpRequestBuilder(HttpClient httpClient) : IHttpRequestBuilder
     {
-        private readonly HttpClient _httpClient;
-        private readonly HttpRequestMessage _request;
-        private readonly List<KeyValuePair<string, string>> _queryParams;
-
-        public HttpRequestBuilder(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-            _request = new HttpRequestMessage();
-            _queryParams = [];
-        }
+        private readonly HttpClient _httpClient = httpClient;
+        private readonly HttpRequestMessage _request = new();
+        private readonly List<KeyValuePair<string, string>> _queryParams = [];
 
         public IHttpRequestBuilder WithMethod(HttpMethod method)
         {

@@ -37,5 +37,10 @@ namespace Zeeget.Shared.Api
         {
             return new BadRequestResult(errors, message);
         }
+
+        public ConflictResult Conflict(string message)
+        {
+            return new ConflictResult(message);
+        }
     }
 }

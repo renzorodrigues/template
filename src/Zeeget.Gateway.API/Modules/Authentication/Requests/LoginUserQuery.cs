@@ -6,11 +6,13 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Requests
 {
     public record LoginUserQuery : IQuery<Result>
     {
-        public UserLoginDto User { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
         public LoginUserQuery(UserLoginDto user)
         {
-            User = user;
+            Username = user.Username;
+            Password = user.Password;
         }
     }
 }

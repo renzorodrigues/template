@@ -14,5 +14,6 @@ namespace Zeeget.Shared.Api
             string message = ResultMessages.BadRequest
         );
         ErrorResult Error(string message = ResultMessages.Error);
+        ConflictResult Conflict(string message = ResultMessages.Conflict);
     }
 }

@@ -6,16 +6,19 @@ using Zeeget.Gateway.API.Modules.Authentication.Services.Keycloak;
 using Zeeget.Shared.Api;
 using Zeeget.Shared.Guards;
 using Zeeget.Shared.Services.HttpRequest.Interfaces;
+using static Zeeget.Shared.Utils.Constants.ContantStrings;
 using IResult = Zeeget.Shared.Api.IResult;
 
 namespace Zeeget.Gateway.API.Modules.Authentication.Handlers
 {
     public class RegisterUserHandler(
+        ILogger<RegisterUserHandler> logger,
         IHttpService httpService,
         IResult result,
         HttpClientSettings httpClientSettings
     ) : IRequestHandler<RegisterUserCommand, Result>
     {
+        private ILogger<RegisterUserHandler> _logger = logger;
         private readonly IHttpService _httpService = httpService;
         private readonly IResult _result = result;
         private readonly HttpClientSettings _httpClientSettings = httpClientSettings;
@@ -56,10 +59,17 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Handlers
 
             if (result.IsSuccessStatusCode)
             {
-                return _result.Created(result.Headers?.Location?.ToString().Split("/").Last());
+                var userId = result.Headers.Location?.ToString().Split("/").Last();
+                _logger.LogInformation(LoggingMessages.UserCreatedWithId, request.Username, userId);
+                return _result.Created(userId);
             }
 
-            return _result.BadRequest();
+            if (result.StatusCode == System.Net.HttpStatusCode.Conflict)
+            {
+                return _result.Conflict();
+            }
+
+            return _result.Error();
         }
 
         private static Dictionary<string, string> SetFormContent()

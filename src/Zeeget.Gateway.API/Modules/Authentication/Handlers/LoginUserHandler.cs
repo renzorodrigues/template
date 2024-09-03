@@ -1,5 +1,5 @@
-﻿using System.Net;
-using MediatR;
+﻿using MediatR;
+using System.Net;
 using Zeeget.Gateway.API.Configurations.Settings;
 using Zeeget.Gateway.API.Configurations.Settings.Modules.Authentication;
 using Zeeget.Gateway.API.Modules.Authentication.Requests;
@@ -28,7 +28,7 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Handlers
         )
         {
             var settings = GetSettings();
-            var formData = SetFormContent(request.User.Username, request.User.Password);
+            var formData = SetFormContent(request.Username, request.Password);
 
             var (Data, Response) = await _httpService
                 .CreateRequest()

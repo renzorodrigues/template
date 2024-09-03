@@ -1,7 +1,9 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Zeeget.Shared.Commons.Handlers.Interfaces;
 using Zeeget.Shared.Handlers.Interfaces;
+using ConflictResult = Zeeget.Shared.Api.CustomResponse.ConflictResult;
 using CreatedResult = Zeeget.Shared.Api.CustomResponse.CreatedResult;
 using NotFoundResult = Zeeget.Shared.Api.CustomResponse.NotFoundResult;
 using UnauthorizedResult = Zeeget.Shared.Api.CustomResponse.UnauthorizedResult;
@@ -57,6 +59,7 @@ namespace Zeeget.Shared.Api
                 actionResult = result switch
                 {
                     NotFoundResult notFoundResult => NotFound(notFoundResult.Message),
+                    ConflictResult conflictResult => Conflict(conflictResult.Message),
                     UnauthorizedResult unauthorizedResult
                         => Unauthorized(unauthorizedResult.Message),
                     _ => BadRequest(result)

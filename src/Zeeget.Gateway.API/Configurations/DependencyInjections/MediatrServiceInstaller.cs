@@ -2,7 +2,6 @@
 using Zeeget.Gateway.API.Configurations.DependencyInjections.Base;
 using Zeeget.Gateway.API.Modules.Authentication.Handlers;
 using Zeeget.Shared.Behaviors;
-using Zeeget.Shared.Services.Logging;
 
 namespace Zeeget.Gateway.API.Configurations.DependencyInjections
 {

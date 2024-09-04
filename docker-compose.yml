@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  gateway:
+    build:
+      context: .
+      dockerfile: src/Zeeget.Gateway.API/Dockerfile
+    ports:
+      - "8080:8080"
+      - "8181:8181"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - keycloak
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0.2
+    environment:
+      - KC_DB=dev-mem
+      - KC_HOSTNAME=localhost
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    command: start-dev --import-realm
+    volumes:
+      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
+    ports:
+      - "8085:8080"
+
+
+volumes:
+  keycloak_data:

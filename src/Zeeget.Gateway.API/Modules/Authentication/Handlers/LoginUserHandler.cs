@@ -49,11 +49,11 @@ namespace Zeeget.Gateway.API.Modules.Authentication.Handlers
         {
             return new Dictionary<string, string>
             {
-                { "client_id", "my-dotnet-app" },
+                { "client_id", "myclient" },
                 { "username", username },
                 { "password", password },
                 { "grant_type", "password" },
-                { "client_secret", "ZQAo0noOBvtTXEx3OtTkuBV6ZNKOf38T" }
+                //{ "client_secret", "ZQAo0noOBvtTXEx3OtTkuBV6ZNKOf38T" }
             };
         }
 

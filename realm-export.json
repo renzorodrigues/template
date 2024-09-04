@@ -1,0 +1,84 @@
+{
+  "id": "myrealm",
+  "realm": "myrealm",
+  "enabled": true,
+  "roles": {
+    "realm": [
+      {
+        "name": "admin",
+        "description": "Role for admin users"
+      },
+      {
+        "name": "user",
+        "description": "Role for standard users"
+      }
+    ],
+    "client": {
+      "myclient": [
+        {
+          "name": "client-admin",
+          "description": "Client-specific admin role"
+        },
+        {
+          "name": "client-user",
+          "description": "Client-specific user role"
+        }
+      ]
+    }
+  },
+  "clients": [
+    {
+      "clientId": "myclient",
+      "enabled": true,
+	  "directAccessGrantsEnabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "redirectUris": ["http://localhost:8082/*"],
+      "defaultClientScopes": ["my-audience-scope"]
+    }
+  ],
+  "clientScopes": [
+    {
+      "id": "my-audience-scope",
+      "name": "my-audience-scope",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true"
+      },
+      "protocolMappers": [
+        {
+          "name": "audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "myclient",
+            "id.token.claim": "true",
+            "access.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "firstName": "John",
+	  "lastName": "Connor",
+      "username": "johnconnor",
+      "enabled": true,
+	  "email": "test@test.com",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Password123!"
+        }
+      ],
+	  "emailVerified": true,
+      "requiredActions": [],
+      "realmRoles": ["user"],
+      "clientRoles": {
+        "myclient": ["client-user"]
+      }
+    }
+  ]
+}

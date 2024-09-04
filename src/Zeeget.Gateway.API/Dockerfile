@@ -10,6 +10,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/Zeeget.Gateway.API/Zeeget.Gateway.API.csproj", "src/Zeeget.Gateway.API/"]
+COPY ["src/Zeeget.Shared/Zeeget.Shared.csproj", "src/Zeeget.Shared/"]
 RUN dotnet restore "./src/Zeeget.Gateway.API/Zeeget.Gateway.API.csproj"
 COPY . .
 WORKDIR "/src/src/Zeeget.Gateway.API"
